@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>dsagfhadshf</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Ерунда
+        </div>
+        <div class="mainfon">
+            <input class="search" type="text" value="serch" />
+            <button class="button">Кнопка1</button>
+            <button>Кнопка2</button>
+        </div>
+         <div class="row">
+                    <button class="col-md-2">DropDawnList1</button> <button class="col-md-2">DropDawnList2</button>
+                    <button class="col-md-2">DropDawnList3</button> <button class="col-md-2">DropDawnList4</button>
+                    <button class="col-md-2">DropDawnList5</button> <button class="col-md-2">DropDawnList6</button>
+        </div>
+        <div class="mramor">
+        </div>
+        <div class="mainfon">
+            <table>
+                sagsg sagsgf asgasg asfhah
+            </table>
+
+        </div>
+    </div>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/bootstrap/dist/js/ddsmoothmenu.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.nivo.slider.pack.js"></script>
+        <script src="~/js/jquery.min.js" asp-append-version="true"></script>
+</body>
+</html>
