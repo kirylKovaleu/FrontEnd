@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        window.onload = function () {
+            document.getElementById("button").addEventListener("click", lineInspection, false);
+            document.getElementById("array").addEventListener("click", array, false);
+            document.getElementById("mergeSort").addEventListener("click", MergeSort, false);
+            document.getElementById("quicksort").addEventListener("click", Quicksort, false);
+            document.getElementById("countingSort").addEventListener("click", CountingSort, false);
+            document.getElementById("shellsort").addEventListener("click", Shellsort, false);
+            document.getElementById("maxAndMin").addEventListener("click", MaxAndMin, false);
+            var string = document.getElementById("text").value;
+        }
+
+        function lineInspection() {
+            var string = getstring();
+            stringsplit(string);
+            
+        }
+
+        function getstring() {
+            return document.getElementById("text").value;
+        }
+
+        function stringsplit(string) {
+
+            var CamelClass = new RegExp("[A-Za-z][^A-Z]+[A-Z][^A-Z]+");
+            var PascalCase = new RegExp("[A-Za-z]+_[A-Za-z]+");
+            var BeginString = new RegExp("^(Hello|hello)");
+            var FinishString = new RegExp("(Bye|bye)$");
+            var reversString = null;
+
+                
+            var camelClass = CamelClass.test(string);
+            var pascalCase = PascalCase.test(string);
+            var beginString = BeginString.test(string);
+            var finishString = FinishString.test(string);
+
+            for (var i = string.length; i >= 0; i--) {
+                reversString += string[i];
+            }
+
+            alert("Работает функция проверки стоки: \n" + 
+                  "Содержит ли строка CamelClass - " + camelClass + "\n" +
+                  "Содержит ли строка PascalCase - "+ pascalCase + "\n" +
+                  "Начинается ли строка с 'Hello' - " + beginString + "\n" +
+                  "Заканчивается ли строка на 'bye' - " + finishString + "\n" +
+                  "Перевернутая строка - " + reversString)
+        }
+
+        function array() {
+            var hight = 100;
+            var mas = [hight];
+
+            for (var i = 0; i < hight; i++) {
+                    mas[i]= Math.floor((Math.random() * 99) +0);
+            }
+
+            document.write("Дан массив:<br \/> ")
+            i=0;
+            while(i < hight){
+                for (var j = 0; j < 10; j++) {
+                    document.write(mas[i] + " ");
+                    i++;
+                }
+                    document.writeln("<br \/>");
+            }
+
+            document.write("Сортировка Insertion sort:<br \/> ");
+            for (var i = 1; i < mas.length; i++) {
+                for (var j = i; j > 0 && mas[j - 1] > mas[j]; j--) {
+                    var tmp = mas[j - 1];
+                    mas[j - 1] = mas[j];
+                    mas[j] = tmp;
+                }
+            }
+
+            l = 0;
+            while (l < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mas[l] + " ");
+                    l++;
+                }
+                document.writeln("<br \/>");
+            }
+            l = 0;
+
+            document.write("Сортировка Bubble sort:<br \/> ");
+
+            for (var i = 0; i < mas.length - 1 ; i++) {
+                    if (mas[i + 1] < mas[i]) {
+                        var x = mas[i + 1];
+                        mas[i + 1] = mas[i];
+                        mas[i] = x;
+                    }
+            }
+
+            l = 0;
+            while (l < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mas[l] + " ");
+                    l++;
+                }
+                document.writeln("<br \/>");
+            }
+        }
+
+        function Shellsort() {
+            document.write("Сортировка Shellsort:<br \/> ");
+            var hight = 100;
+            var mass = [hight];
+
+            for (var i = 0; i < hight; i++) {
+                mass[i] = Math.floor((Math.random() * 99) + 0);
+            }
+
+            document.write("Дан массив:<br \/> ")
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mass[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+
+            document.write("Отсортированный массив:<br \/>");
+            var n = mass.length, i = Math.floor(n / 2);
+            while (i > 0) {
+                for (var j = 0; j < n; j++) {
+                    var k = j, t = mass[j];
+                    while (k >= i && mass[k - i] > t)
+                    { mass[k] = mass[k - i]; k -= i; }
+                    mass[k] = t;
+                }
+                i = (i == 2) ? 1 : Math.floor(i * 5 / 11);
+            }
+
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mass[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+        }
+
+        function CountingSort() {
+            document.write("Сортировка Quicksort:<br \/> ");
+            var hight = 100;
+            var mass = [hight];
+
+            for (var i = 0; i < hight; i++) {
+                mass[i] = Math.floor((Math.random() * 99) + 0);
+            }
+
+            document.write("Дан массив:<br \/> ")
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mass[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+
+            document.write("Отсортированный массив:<br \/>");
+
+            var n = mass.length, Count = [], array = [];
+            for (var i = 0; i < n; i++) Count[ i ] = 0;
+            for (var i = 0; i < n-1; i++)
+            { for (var j = i+1; j < n; j++)
+            {
+                if (mass[i] < mass[j]) Count[j]++;
+                else Count[ i ]++;
+            }
+            }
+            for (var i = 0; i < n; i++) array[Count[i]] = mass[i];
+
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(array[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+        }
+
+        function Quicksort() {
+            var hight = 100;
+            var mass = [hight];
+
+            for (var i = 0; i < hight; i++) {
+                mass[i] = Math.floor((Math.random() * 99) + 0);
+            }
+
+            var array = quick(mass);
+
+            alert("Дан массив:" + mass + "\n" + "Сортировка Quicksort:" + array);
+        }
+         
+        function quick(mass) {
+            if (mass.length == 0) return [];
+            var a = [], b = [], p = mass[0];
+            for (var i = 1; i < mass.length; i++) {
+                if (mass[i] < p) a[a.length] = mass[i];
+                else b[b.length] = mass[i];
+            }
+            return quick(a).concat(p, quick(b));
+        }
+
+        function MergeSort() {
+            document.write("Сортировка Merge sort:<br \/> ");
+            var hight = 100;
+            var mas = [hight];
+
+            for (var i = 0; i < hight; i++) {
+                mas[i] = Math.floor((Math.random() * 99) + 0);
+            }
+
+            document.write("Дан массив:<br \/> ")
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(mas[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+
+            var array = sort(mas);
+
+            i = 0;
+            while (i < hight) {
+                for (var j = 0; j < 10; j++) {
+                    document.write(array[i] + " ");
+                    i++;
+                }
+                document.writeln("<br \/>");
+            }
+        }
+
+        function sort(mas) {
+            var mas1 = [mas.length / 2];
+            var mas2 = [mas.length - mas1];
+
+            for (var i = 0; i < mas.length / 2; i++) {
+                mas1[i] = mas[i];
+            }
+            for (var i = 0; i < mas.length / 2; i++) {
+                mas2[i] = mas[mas1.length + i];
+            }
+
+            if (mas1.length > 1)
+                mas1 = sort(mas1);
+            if (mas2.length > 1)
+                mas2 = sort(mas2);
+
+            mas = Merge(mas1, mas2);
+
+            return mas;
+        }
+
+        function Merge(left, right) {
+            var buff = [left.length + right.length];
+
+            var i = 0; 
+            var l = 0; 
+            var r = 0;
+            var number = 0;
+
+            for (; i < buff.length; i++)
+            {
+
+                if (r >= right.length)
+                {
+                    buff[i] = left[l];
+                    l++;
+                }
+
+                else if (l < left.length && left[l] < right[r])
+                {
+                    buff[i] = left[l];
+                    l++;
+                }
+
+                else
+                {
+                    buff[i] = right[r];
+                    r++;
+
+                    if (l < left.length)
+                        number += left.length - l;
+                }
+            }
+
+            return buff;
+        }
+
+        function MaxAndMin() {
+            var hight = 100;
+            var mass = [hight];
+            var max = 0, min = 10;
+            var count = 0;
+            var sum = 0;
+            var avg = 0;
+
+            for (var i = 0; i < hight; i++) {
+                mass[i] = Math.floor((Math.random() * 99) + 0);
+            }
+
+            for (var i = 0; i < mass.length; i++) {
+              
+                if (mass[i + 1] > max) {
+                    max = mass[i + 1];
+                }
+                if (mass[i + 1] < min) {
+                    min = mass[i + 1];
+                }
+                sum += mass[i];
+                count++;
+            }
+
+            avg = sum / count;
+            alert("Дан массив:" + mass + "\n" + "MAX = " + max + "\n" + "MIN = " + min + "\n" + "Среднее = " + avg);
+        }
+    </script>
+</head>
+<body>
+    <input id="text" type="text" value="" />
+    <input id="button" type="button" value="String" />
+    <input id="array" type="button" value="Array" />
+    <input id="mergeSort" type="button" value="MergeSort" />
+    <input id="quicksort" type="button" value="Quicksort" />
+    <input id="countingSort" type="button" value="Counting sort" />
+    <input id="shellsort"type="button" value="Shellsort" />
+    <input id="maxAndMin" type="button" value="MaxAndMin" />
+</body>
+</html>
