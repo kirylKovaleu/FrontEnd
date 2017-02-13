@@ -12,6 +12,8 @@
             document.getElementById("countingSort").addEventListener("click", CountingSort, false);
             document.getElementById("shellsort").addEventListener("click", Shellsort, false);
             document.getElementById("maxAndMin").addEventListener("click", MaxAndMin, false);
+            document.getElementById("summ").addEventListener("click", SummString, false);
+            document.getElementById("parsing").addEventListener("click", ParsingString, false);
             var string = document.getElementById("text").value;
         }
 
@@ -23,6 +25,84 @@
 
         function getstring() {
             return document.getElementById("text").value;
+        }
+
+        function ParsingString() {
+            var data = ";key,value;key1,value1;key3,value3;"
+            var result = [];
+            data = data.replace(/,/g, ": ");
+            data = data.replace(/;/g, "\n");
+
+
+            var res = data.split(";");
+            for (var i = 0; i < res.length; i++) {
+                
+                var t = res[i].search(/,/i);
+                if(t != -1)
+                    result.push(res[i].split(","));
+            }
+            alert(res);
+        }
+
+        function SummString() {
+            var count = 0;
+            var string1 = document.getElementById("string1").value;
+            var string2 = document.getElementById("string2").value;
+
+            string3 = string1.replace(/[a-zG-Z]/g, "");
+            string4 = string2.replace(/[a-zG-Z]/g, "");
+
+            count += getSumString(string3);
+            count += getSumString(string4);
+
+            alert("Данны две строки : " + string1 + "\nи : " + string2 + "\nСумма цифр этих строк = " + count);
+        }
+
+        function getSumString(string) {
+            var count = 0;
+            for (var i = 0; i < string.length; i++)
+            {
+                var n = string[i];
+                switch (n)
+                {
+                    case "A":
+                        {
+                            count += 10;
+                            break;
+                        }
+                    case "B":
+                        {
+                            count += 11;
+                            break;
+                        }
+                    case "C":
+                        {
+                            count += 12;
+                            break;
+                        }
+                    case "D":
+                        {
+                            count += 13;
+                            break;
+                        }
+                    case "E":
+                        {
+                            count += 14;
+                            break;
+                        }
+                    case "F":
+                        {
+                            count += 15;
+                            break;
+                        }
+                    default:
+                        {
+                            count += parseInt(string[i]);
+                            break;
+                        }
+                }
+            }
+            return count;
         }
 
         function stringsplit(string) {
@@ -332,13 +412,24 @@
     </script>
 </head>
 <body>
-    <input id="text" type="text" value="" />
+    <div><h3>String</h3></div>
+    <input id="text" type="text" value="" placeholder="Введите строку" />
     <input id="button" type="button" value="String" />
+
+    <div><h3>Array</h3></div>
     <input id="array" type="button" value="Array" />
     <input id="mergeSort" type="button" value="MergeSort" />
     <input id="quicksort" type="button" value="Quicksort" />
     <input id="countingSort" type="button" value="Counting sort" />
-    <input id="shellsort"type="button" value="Shellsort" />
+    <input id="shellsort" type="button" value="Shellsort" />
     <input id="maxAndMin" type="button" value="MaxAndMin" />
+
+    <div><h3>Statements Tasks</h3></div>
+    <input id="string1" type="text" value="" placeholder="Введите строку чисел" />
+    <input id="string2" type="text" value="" placeholder="Введите строку чисел" />
+    <input id="summ" type="button" value="Summ" />
+    <div><h3>SemiColonSON </h3></div>
+    <input id="parsing" type="button" value="Разбор строки" />
+
 </body>
 </html>
